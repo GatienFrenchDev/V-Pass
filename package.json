@@ -1,0 +1,16 @@
+{
+  "name": "v-pass",
+  "version": "1.0.0",
+  "description": "V-Pass",
+  "main": "index.js",
+  "scripts": {
+    "start" : "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "GatienDev",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^17.1.1"
+  }
+}
