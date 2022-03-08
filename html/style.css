@@ -6,6 +6,7 @@ Import fonts
 
 
 * {
+    user-select: none;
     margin: 0;
     padding: 0;
 }
@@ -15,26 +16,48 @@ body{
 }
 
 div.left-side{
-    padding: 1%;
+    padding: 30px;
+    padding-top: 40px;
     position: fixed;
     left: 0;
     height: 100%;
-    width: 10%;
+    width: 16%;
     background-color: #9B2335;
 }
 
 div.left-side h2{
-    font-size: 28px;
+    font-size: 30px;
     font-family: 'Roboto';
     color: white;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 div.left-side h3{
     text-align: center;
     color: white;
-    font-size: 14px;
+    font-size: 13px;
     font-family: 'Roboto';
     font-style: italic;
+}
+
+div.compte{
+    margin: 15px;
+    position: fixed;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.compte p{
+    font-family: 'Roboto';
+    font-size: 14px;
+}
+
+div.compte img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
 }

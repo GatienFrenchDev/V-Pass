@@ -16,11 +16,12 @@ app.disableHardwareAcceleration()
 
 const loadMainWindow = () => {
     const mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 800,
+        width: 1000,
+        height: 650,
         webPreferences: {
             nodeIntegration: true
-        }
+        },
+        preload : path.join(__dirname, '/html/js/preload.js')
     })
 
     mainWindow.loadFile(__dirname+'/html/index.html')
