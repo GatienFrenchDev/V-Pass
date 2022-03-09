@@ -92,6 +92,7 @@ div.password {
     height: 525px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 
 div.password div {
@@ -107,7 +108,7 @@ div.password div {
 
 div.password div:hover {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-    transform: scale(1.01);
+    transform: scale(1.02);
 }
 
 div.password div h3 {
