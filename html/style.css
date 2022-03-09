@@ -1,9 +1,19 @@
 /*
 Import fonts
 */
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+/*
+Couleurs
+*/
 
+* {
+    --main-bg-color: #DFCFBE;
+    --secondary-bg-color: #9B2335;
+    --third-bg-color: #292929;
+    --fourth-bg-color: #004d39;
+}
 
 * {
     user-select: none;
@@ -11,21 +21,21 @@ Import fonts
     padding: 0;
 }
 
-body{
-    background-color: #DFCFBE;
+body {
+    background-color: var(--main-bg-color);
 }
 
-div.left-side{
+div.left-side {
     padding: 30px;
     padding-top: 40px;
     position: fixed;
     left: 0;
     height: 100%;
     width: 16%;
-    background-color: #9B2335;
+    background-color: var(--secondary-bg-color);
 }
 
-div.left-side h2{
+div.left-side h2 {
     font-size: 30px;
     font-family: 'Roboto';
     color: white;
@@ -33,15 +43,27 @@ div.left-side h2{
     margin-bottom: 15px;
 }
 
-div.left-side h3{
+div.left-side h3 {
     text-align: center;
     color: white;
     font-size: 13px;
     font-family: 'Roboto';
     font-style: italic;
+    margin-bottom: 15px;
 }
 
-div.compte{
+div.left-side button {
+    margin-top: 20px;
+    border: 0;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--third-bg-color);
+    padding: 7px;
+    color: white;
+    font-family: 'Roboto';
+}
+
+div.compte {
     margin: 15px;
     position: fixed;
     right: 0;
@@ -50,14 +72,52 @@ div.compte{
     align-items: center;
 }
 
-div.compte p{
+div.compte p {
     font-family: 'Roboto';
     font-size: 14px;
 }
 
-div.compte img{
+div.compte img {
     height: 30px;
     width: 30px;
     border-radius: 50%;
     margin-right: 10px;
+}
+
+div.password {
+    position: fixed;
+    left: 250px;
+    margin-top: 75px;
+    width: 730px;
+    height: 525px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+div.password div {
+    justify-self: center;
+    padding: 15px;
+    border-radius: 8px;
+    height: 75px;
+    width: 200px;
+    transition: all 0.2s;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    background-color: white;
+}
+
+div.password div:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.01);
+}
+
+div.password div h3 {
+    font-family: 'Roboto';
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+div.password div h4 {
+    font-family: 'Roboto';
+    color: black;
+    font-size: 15px;
 }
