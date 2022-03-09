@@ -1,6 +1,6 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-
+const { userInfo } = require('os')
 
 /*
 to solve small Electron bugs
@@ -18,13 +18,17 @@ const loadMainWindow = () => {
     const mainWindow = new BrowserWindow({
         width: 1000,
         height: 650,
+        resizable: false,
+        title: 'V-Pass',
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation : false
         },
-        preload : path.join(__dirname, '/html/js/preload.js')
+        preload : path.join(__dirname, '/js/preload.js')
     })
-
-    mainWindow.loadFile(__dirname+'/html/index.html')
+    mainWindow.loadFile(__dirname+`/html/index.html`)
+    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.send('username', userInfo().username)
 }
 
 app.on('ready', loadMainWindow)
@@ -40,4 +44,8 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit()
     }
+})
+
+ipcMain.on('username', (event, data) =>{
+    event.reply('reply', userInfo().username)
 })
