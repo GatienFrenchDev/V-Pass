@@ -7,13 +7,19 @@ const fs = require('fs')
 // to solve small Electron bugs
 app.commandLine.appendSwitch('no-sandbox')
 
+const default_config = {
+    path : __dirname+'/V-Pass_Config/pass.json',
+}
+
 // implementation of the config.json file, located in the "V-Pass_Config" folder
-fs.acces('./V-Pass_Config', async (err) =>{
+fs.access('./V-Pass_Config', fs.constants.R_OK, async (err) =>{
     if(err){
-        fs.mkdirSync('./V-Pass_Config')
-        fs.writeFileSync('./V-Pass_Config/config.json', )
+        fs.mkdirSync('./V-Pass_Config') // folder creation
+        fs.writeFileSync('./V-Pass_Config/pass.json','{}') // pass file creation
+        fs.writeFileSync('./V-Pass_Config/config.json', JSON.stringify(default_config)) // config file creation
     }
-    const config = require('./V-Pass_Config/config.json')
+    const config = require('./V-Pass_Config/config.json') // import config file
+    const pass = require('./V-Pass_Config/pass.json')
 })
 
 
