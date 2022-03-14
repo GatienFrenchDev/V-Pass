@@ -18,10 +18,10 @@ fs.access('./V-Pass_Config', fs.constants.R_OK, async (err) =>{
         fs.writeFileSync('./V-Pass_Config/pass.json','{}') // pass file creation
         fs.writeFileSync('./V-Pass_Config/config.json', JSON.stringify(default_config)) // config file creation
     }
-    const config = require('./V-Pass_Config/config.json') // import config file
-    const pass = require('./V-Pass_Config/pass.json')
 })
 
+const config = require('./V-Pass_Config/config.json') // import config file
+const pass = require('./V-Pass_Config/pass.json') // import pass file
 
 const loadMainWindow = () => {
     const mainWindow = new BrowserWindow({
