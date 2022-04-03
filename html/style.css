@@ -9,10 +9,8 @@ Couleurs
 */
 
 * {
-    --main-bg-color: #DFCFBE;
-    --secondary-bg-color: #9B2335;
-    --third-bg-color: #292929;
-    --fourth-bg-color: #004d39;
+    --background-color: #fff;
+    --header-color : #2C3A47;
 }
 
 * {
@@ -22,8 +20,51 @@ Couleurs
 }
 
 body {
-    background-color: var(--main-bg-color);
+    background-color: var(--background-color);
 }
+
+div.header{
+    height: 80px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 7fr 1fr;
+    background-color: var(--header-color);
+    
+    align-items: center;
+}
+
+div.title{
+    display: flex;
+    justify-content: center;
+}
+
+div.title h2{
+    color: white;
+}
+
+div.search-bar{
+ 
+    display: flex;
+    justify-content: center;
+}
+
+div.search-bar input{
+    padding: 20px;
+    height: 35px;
+    border-radius: 20px;
+    margin-right: 10px;
+    width: 80%;
+}
+
+
+
+div#trait{
+    width: 10px;
+    height: 3px;
+    background-color: #88eecc;
+}
+
+
 
 div.left-side {
     padding: 30px;
@@ -86,23 +127,23 @@ div.compte img {
 
 div.password {
     position: fixed;
-    left: 250px;
+    left: 50px;
     margin-top: 75px;
-    width: 730px;
+    width: 900px;
     height: 525px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 160px);
 }
 
 div.password div {
     justify-self: center;
     padding: 15px;
     border-radius: 8px;
-    height: 75px;
+    height: 95px;
     width: 200px;
     transition: all 0.2s;
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     background-color: white;
 }
 
