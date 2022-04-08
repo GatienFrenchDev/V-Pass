@@ -7,4 +7,8 @@ Séance 2:
 Début du CSS
 
 Séance 3:
+<<<<<<< HEAD
 Réalisation des fonctions pour décrypter et encrypter en AES et début de modélisation avec three.js
+=======
+Réalisation des fonctions pour décrypter et encrypter en AES et début de modélisation avec three.js
+>>>>>>> 039990bdc3ac8bfb3aa4099f1df1ecef39c940d7
