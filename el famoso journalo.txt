@@ -1,10 +1,10 @@
-Gatien Gillot - Sidney Kette
+Gatien G - Sidney K
 
-s�ance 1:
+Séance 1:
 Plan
 
-s�ance 2:
-D�but du CSS
+Séance 2:
+Début du CSS
 
-séance 3:
+Séance 3:
 Réalisation des fonctions pour décrypter et encrypter en AES et début de modélisation avec three.js

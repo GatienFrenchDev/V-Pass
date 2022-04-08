@@ -1,3 +1,6 @@
 /node_modules
 /V-Pass_Config
 /essai_three_js/three.js
+/essai_three_js/modeles
+/essai_three_js/resources
+/essai_three_js/FBXLoader.js

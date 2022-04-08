@@ -1,6 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-const { userInfo } = require('os')
 const fs = require('fs')
 const sha256 = require('crypto-js/sha256')
 const aes = require('crypto-js/aes')
@@ -11,14 +10,15 @@ app.commandLine.appendSwitch('no-sandbox')
 
 const default_config = {
     path : __dirname+'/V-Pass_Config/pass.json',
+    main_hash : '0'
 }
 
 // implementation of the config.json file, located in the "V-Pass_Config" folder
 fs.access('./V-Pass_Config', fs.constants.R_OK, async (err) =>{
     if(err){
         fs.mkdirSync('./V-Pass_Config') // folder creation
-        fs.writeFileSync('./V-Pass_Config/pass.json','{}') // pass file creation
-        fs.writeFileSync('./V-Pass_Config/config.json', JSON.stringify(default_config)) // config file creation
+        fs.writeFileSync('./V-Pass_Config/pass.json','{}', { overwrite: false }) // pass file creation
+        fs.writeFileSync('./V-Pass_Config/config.json', JSON.stringify(default_config), { overwrite: false }) // config file creation
     }
 })
 
@@ -38,7 +38,12 @@ const loadMainWindow = () => {
         preload : path.join(__dirname, '/js/preload.js')
     })
     mainWindow.removeMenu()
-    mainWindow.loadFile(__dirname+`/html/index.html`)
+    if(config.main_hash == '0'){
+        mainWindow.loadFile(__dirname+`/html/inscription.html`)
+    }
+    else{
+        mainWindow.loadFile(__dirname+`/html/login.html`)
+    }
     // mainWindow.webContents.openDevTools()
 }
 
@@ -58,9 +63,9 @@ app.on('window-all-closed', () => {
 })
 
 ipcMain.on('username', (event, data) =>{
-    event.reply('reply', userInfo().username)
+    event.reply('reply', 'Lorem Ipsum')
 })
 
-ipcMain.on('path', (event, data) =>{
-    event.reply('reply', userInfo().username)
+ipcMain.on('pass', (event, data) =>{
+    event.reply('reply', pass)
 })

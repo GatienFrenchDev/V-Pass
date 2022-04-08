@@ -1,0 +1,91 @@
+/*
+Import fonts
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/*
+Couleurs
+*/
+
+* {
+    --background-color: #fff;
+    --header-color : #2C3A47;
+}
+
+* {
+    user-select: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+div.header{
+    height: 80px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 7fr 1.3fr;
+    background-color: var(--header-color);
+    /* display: flex; */
+    /* justify-content: center; */
+    align-items: center;
+}
+
+div.title{
+    display: flex;
+    justify-content: center;
+}
+
+div.title h2{
+    color: white;
+}
+
+div.sear h-bar{
+ 
+    display: flex;
+    justify-content: center;
+}
+
+div.search-bar input{
+    padding: 20px;
+    height: 35px;
+    border-radius: 20px;
+    margin-right: 10px;
+    width: 80%;
+}
+
+div.hamburger1{
+    display: flex;
+    justify-content: center;
+}
+
+div.hamburger{
+    background-color:white;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+div#trait{
+    width: 15px;
+    height: 3px;
+    background-color: grey;
+}
+
+div.password {
+    position: fixed;
+    left: 50px;
+    margin-top: 75px;
+    width: 900px;
+    height: 525px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 160px);
+}

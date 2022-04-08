@@ -1,20 +1,25 @@
 {
   "name": "v-pass",
   "version": "1.0.0",
-  "description": "V-Pass",
+  "description": "Un gestionnaire de mots de passe incroyable !",
   "main": "index.js",
   "scripts": {
-    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "GatienDev",
-  "license": "ISC",
-  "devDependencies": {
-    "electron": "^17.3.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GatienFrenchDev/V-Pass.git"
   },
+  "author": "Gatien et Sidney",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GatienFrenchDev/V-Pass/issues"
+  },
+  "homepage": "https://github.com/GatienFrenchDev/V-Pass#readme",
   "dependencies": {
-    "crypto-js": "^4.1.1",
-    "three": "^0.139.2"
+    "crypto-js": "^4.1.1"
+  },
+  "devDependencies": {
+    "electron": "^18.0.3"
   }
 }
