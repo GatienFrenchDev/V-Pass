@@ -4,7 +4,7 @@
   "description": "Un gestionnaire de mots de passe incroyable !",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/GatienFrenchDev/V-Pass#readme",
   "dependencies": {
-    "crypto-js": "^4.1.1"
+    "crypto-js": "^4.1.1",
+    "util": "^0.12.4"
   },
   "devDependencies": {
     "electron": "^18.0.3"
