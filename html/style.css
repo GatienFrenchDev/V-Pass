@@ -27,9 +27,10 @@ div.header{
     height: 80px;
     width: 100%;
     display: grid;
-    grid-template-columns: 2fr 7fr 1fr;
+    grid-template-columns: 2fr 7fr 1.3fr;
     background-color: var(--header-color);
-    
+    /* display: flex; */
+    /* justify-content: center; */
     align-items: center;
 }
 
@@ -42,7 +43,7 @@ div.title h2{
     color: white;
 }
 
-div.search-bar{
+div.sear h-bar{
  
     display: flex;
     justify-content: center;
@@ -56,73 +57,26 @@ div.search-bar input{
     width: 80%;
 }
 
-
-
-div#trait{
-    width: 10px;
-    height: 3px;
-    background-color: #88eecc;
-}
-
-
-
-div.left-side {
-    padding: 30px;
-    padding-top: 40px;
-    position: fixed;
-    left: 0;
-    height: 100%;
-    width: 16%;
-    background-color: var(--secondary-bg-color);
-}
-
-div.left-side h2 {
-    font-size: 30px;
-    font-family: 'Roboto';
-    color: white;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-div.left-side h3 {
-    text-align: center;
-    color: white;
-    font-size: 13px;
-    font-family: 'Roboto';
-    font-style: italic;
-    margin-bottom: 15px;
-}
-
-div.left-side button {
-    margin-top: 20px;
-    border: 0;
-    width: 100%;
-    border-radius: 5px;
-    background-color: var(--third-bg-color);
-    padding: 7px;
-    color: white;
-    font-family: 'Roboto';
-}
-
-div.compte {
-    margin: 15px;
-    position: fixed;
-    right: 0;
+div.hamburger1{
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-div.compte p {
-    font-family: 'Roboto';
-    font-size: 14px;
-}
-
-div.compte img {
-    height: 30px;
-    width: 30px;
+div.hamburger{
+    background-color:white;
     border-radius: 50%;
-    margin-right: 10px;
+    height: 40px;
+    width: 40px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+div#trait{
+    width: 15px;
+    height: 3px;
+    background-color: grey;
 }
 
 div.password {
@@ -134,32 +88,4 @@ div.password {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 160px);
-}
-
-div.password div {
-    justify-self: center;
-    padding: 15px;
-    border-radius: 8px;
-    height: 95px;
-    width: 200px;
-    transition: all 0.2s;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    background-color: white;
-}
-
-div.password div:hover {
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-    transform: scale(1.02);
-}
-
-div.password div h3 {
-    font-family: 'Roboto';
-    font-size: 24px;
-    margin-bottom: 5px;
-}
-
-div.password div h4 {
-    font-family: 'Roboto';
-    color: black;
-    font-size: 15px;
 }

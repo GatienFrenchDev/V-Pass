@@ -2,6 +2,8 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const { userInfo } = require('os')
 const fs = require('fs')
+const sha256 = require('crypto-js/sha256')
+const aes = require('crypto-js/aes')
 
 
 // to solve small Electron bugs
