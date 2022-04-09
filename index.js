@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-const util = require('util')
+const { promisify } = require('util')
 const fs = require('fs')
 const sha256 = require('crypto-js/sha256')
 const aes = require('crypto-js/aes')
@@ -14,18 +14,23 @@ const default_config = {
     main_hash: '0'
 }
 
+var config, pass
+
 // implementation of the config.json file, located in the "V-Pass_Config" folder
 fs.access('./V-Pass_Config', fs.constants.R_OK, async (err) => {
     if (err) {
         fs.mkdirSync('./V-Pass_Config') // folder creation
-        fs.writeFile('./V-Pass_Config/pass.json', '{}', { flag: "wx" }, () => {})
-        fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(default_config), { flag: "wx" }, () => {})
+        fs.writeFile('./V-Pass_Config/pass.json', '{}', { flag: "wx" }, () => { })
+        fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(default_config), { flag: "wx" }, () => {
+            config = require('./V-Pass_Config/config.json')
+            pass = require('./V-Pass_Config/pass.json')
+        })
+    }
+    else {
+        config = require('./V-Pass_Config/config.json')
+        pass = require('./V-Pass_Config/pass.json')
     }
 })
-
-
-const config = require('./V-Pass_Config/config.json') // import config file
-const pass = require('./V-Pass_Config/pass.json') // import pass file
 
 const loadMainWindow = () => {
     const mainWindow = new BrowserWindow({
@@ -40,11 +45,16 @@ const loadMainWindow = () => {
         preload: path.join(__dirname, '/js/preload.js')
     })
     mainWindow.removeMenu()
-    if (config.main_hash == '0') {
+    if (typeof config === "undefined") {
         mainWindow.loadFile(__dirname + `/html/inscription.html`)
     }
     else {
-        mainWindow.loadFile(__dirname + `/html/login.html`)
+        if (config.main_hash == '0') {
+            mainWindow.loadFile(__dirname + `/html/inscription.html`)
+        }
+        else {
+            mainWindow.loadFile(__dirname + `/html/login.html`)
+        }
     }
     mainWindow.webContents.openDevTools()
 }
@@ -67,4 +77,10 @@ app.on('window-all-closed', () => {
 
 ipcMain.on('pass', (event, data) => {
     event.reply('reply', pass)
+})
+
+ipcMain.on('login', (e, d) => {
+    config.main_hash = sha256(d).toString()
+    fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(config), () => {})
+    mainWindow.loadFile(__dirname + `/html/index.html`)
 })
