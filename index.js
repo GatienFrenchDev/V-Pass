@@ -49,12 +49,8 @@ const loadMainWindow = () => {
         mainWindow.loadFile(__dirname + `/html/inscription.html`)
     }
     else {
-        if (config.main_hash == '0') {
-            mainWindow.loadFile(__dirname + `/html/inscription.html`)
-        }
-        else {
-            mainWindow.loadFile(__dirname + `/html/login.html`)
-        }
+        mainWindow.loadFile(__dirname + `/html/inscription.html`)
+        mainWindow.loadFile(__dirname + `/html/login.html`)
     }
     mainWindow.webContents.openDevTools()
 }
@@ -79,8 +75,17 @@ ipcMain.on('pass', (event, data) => {
     event.reply('reply', pass)
 })
 
-ipcMain.on('login', (e, d) => {
+ipcMain.on('enregistrer', (e, d) => {
     config.main_hash = sha256(d).toString()
-    fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(config), () => {})
+    fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(config), () => { })
     mainWindow.loadFile(__dirname + `/html/index.html`)
+})
+
+ipcMain.on('login', (e, d) => {
+    if (sha256(d).toString() == config.main_hash) {
+        ipcMain.reply(true)
+    }
+    else {
+        ipcMain.reply(false)
+    }
 })
