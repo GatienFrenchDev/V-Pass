@@ -18,6 +18,7 @@
   "homepage": "https://github.com/GatienFrenchDev/V-Pass#readme",
   "dependencies": {
     "crypto-js": "^4.1.1",
+    "js-levenshtein": "^1.1.6",
     "util": "^0.12.4"
   },
   "devDependencies": {

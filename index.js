@@ -4,6 +4,7 @@ const { promisify } = require('util')
 const fs = require('fs')
 const sha256 = require('crypto-js/sha256')
 const aes = require('./tools/aes')
+const levenshtein = require('./tools/levenshtein')
 
 
 // to solve small Electron bugs
