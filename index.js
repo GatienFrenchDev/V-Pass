@@ -3,7 +3,7 @@ const path = require('path')
 const { promisify } = require('util')
 const fs = require('fs')
 const sha256 = require('crypto-js/sha256')
-const aes = require('crypto-js/aes')
+const aes = require('./tools/aes')
 
 
 // to solve small Electron bugs
@@ -14,7 +14,8 @@ const default_config = {
     main_hash: '0'
 }
 
-var config, pass
+var config = require('./V-Pass_Config/config.json')
+var pass = require('./V-Pass_Config/pass.json')
 
 // implementation of the config.json file, located in the "V-Pass_Config" folder
 fs.access('./V-Pass_Config', fs.constants.R_OK, async (err) => {
@@ -45,11 +46,10 @@ const loadMainWindow = () => {
         preload: path.join(__dirname, '/js/preload.js')
     })
     mainWindow.removeMenu()
-    if (typeof config === "undefined") {
+    if (config.pass == "0") {
         mainWindow.loadFile(__dirname + `/html/inscription.html`)
     }
     else {
-        mainWindow.loadFile(__dirname + `/html/inscription.html`)
         mainWindow.loadFile(__dirname + `/html/login.html`)
     }
     mainWindow.webContents.openDevTools()
@@ -83,9 +83,9 @@ ipcMain.on('enregistrer', (e, d) => {
 
 ipcMain.on('login', (e, d) => {
     if (sha256(d).toString() == config.main_hash) {
-        ipcMain.reply(true)
+        mainWindow.loadFile(__dirname + `/html/index.html`)
     }
     else {
-        ipcMain.reply(false)
+        e.reply('reply', false)
     }
 })
