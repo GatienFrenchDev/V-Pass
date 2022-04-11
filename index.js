@@ -14,9 +14,14 @@ const default_config = {
     path: __dirname + '\\V-Pass_Config\\pass.json',
     main_hash: '0'
 }
-
-var config = require('./V-Pass_Config/config.json')
-var pass = require('./V-Pass_Config/pass.json')
+try{
+    var config = require('./V-Pass_Config/config.json')
+    var pass = require('./V-Pass_Config/pass.json')
+}
+catch{
+    var config = {}
+    config.main_hash = "0"
+}
 
 // implementation of the config.json file, located in the "V-Pass_Config" folder
 fs.access('./V-Pass_Config', fs.constants.R_OK, async (err) => {
@@ -25,12 +30,8 @@ fs.access('./V-Pass_Config', fs.constants.R_OK, async (err) => {
         fs.writeFile('./V-Pass_Config/pass.json', '{}', { flag: "wx" }, () => { })
         fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(default_config), { flag: "wx" }, () => {
             config = require('./V-Pass_Config/config.json')
-            pass = require('./V-Pass_Config/pass.json')
+            var pass = require('./V-Pass_Config/pass.json')
         })
-    }
-    else {
-        config = require('./V-Pass_Config/config.json')
-        pass = require('./V-Pass_Config/pass.json')
     }
 })
 
@@ -46,18 +47,23 @@ const loadMainWindow = () => {
         },
         preload: path.join(__dirname, '/js/preload.js')
     })
+    process.env.MAIN_WINDOW_ID = mainWindow.id
     mainWindow.removeMenu()
-    if (config.pass == "0") {
+    if (config.main_hash == "0") {
         mainWindow.loadFile(__dirname + `/html/inscription.html`)
     }
     else {
         mainWindow.loadFile(__dirname + `/html/login.html`)
     }
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 }
 
 app.on('ready', loadMainWindow)
 
+const getMainWindow = () => {
+    const ID = process.env.MAIN_WINDOW_ID * 1
+    return BrowserWindow.fromId(ID)
+}
 
 app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
@@ -79,12 +85,12 @@ ipcMain.on('pass', (event, data) => {
 ipcMain.on('enregistrer', (e, d) => {
     config.main_hash = sha256(d).toString()
     fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(config), () => { })
-    mainWindow.loadFile(__dirname + `/html/index.html`)
+    getMainWindow().loadFile(__dirname + `/html/index.html`)
 })
 
 ipcMain.on('login', (e, d) => {
     if (sha256(d).toString() == config.main_hash) {
-        mainWindow.loadFile(__dirname + `/html/index.html`)
+        getMainWindow().loadFile(__dirname + `/html/index.html`)
     }
     else {
         e.reply('reply', false)

@@ -4,7 +4,8 @@
   "description": "Un gestionnaire de mots de passe incroyable !",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . V-Pass --platform=win32 --arch=x64"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "util": "^0.12.4"
   },
   "devDependencies": {
-    "electron": "^18.0.3"
+    "electron": "^18.0.3",
+    "electron-packager": "^15.4.0"
   }
 }
