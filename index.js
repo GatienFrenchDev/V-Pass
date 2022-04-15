@@ -5,6 +5,7 @@ const fs = require('fs')
 const sha256 = require('crypto-js/sha256')
 const aes = require('./tools/aes')
 const levenshtein = require('./tools/levenshtein')
+const discord_status = require('./tools/discord_status')
 
 
 // to solve small Electron bugs
