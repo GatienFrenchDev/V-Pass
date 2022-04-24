@@ -3,9 +3,11 @@ const path = require('path')
 const { promisify } = require('util')
 const fs = require('fs')
 const sha256 = require('crypto-js/sha256')
-const aes = require('./tools/aes')
 const levenshtein = require('./tools/levenshtein')
-const discord_status = require('./tools/discord_status')
+
+// const discord_status = require('./tools/discord_status')
+
+let pass
 
 
 // to solve small Electron bugs
@@ -84,12 +86,14 @@ ipcMain.on('pass', (event, data) => {
 })
 
 ipcMain.on('enregistrer', (e, d) => {
+    pass = d
     config.main_hash = sha256(d).toString()
     fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(config), () => { })
     getMainWindow().loadFile(__dirname + `/html/index.html`)
 })
 
 ipcMain.on('login', (e, d) => {
+    pass = d
     if (sha256(d).toString() == config.main_hash) {
         getMainWindow().loadFile(__dirname + `/html/index.html`)
     }
