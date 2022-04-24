@@ -3,11 +3,12 @@ const path = require('path')
 const { promisify } = require('util')
 const fs = require('fs')
 const sha256 = require('crypto-js/sha256')
+const sha1 = require('crypto-js/sha1')
 const levenshtein = require('./tools/levenshtein')
 
 // const discord_status = require('./tools/discord_status')
 
-let pass
+let main_pass
 
 
 // to solve small Electron bugs
@@ -86,14 +87,36 @@ ipcMain.on('pass', (event, data) => {
 })
 
 ipcMain.on('enregistrer', (e, d) => {
-    pass = d
+    main_pass = d
     config.main_hash = sha256(d).toString()
     fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(config), () => { })
     getMainWindow().loadFile(__dirname + `/html/index.html`)
 })
 
+ipcMain.on('ajouter', (e, d) =>{
+
+    /*
+        d = {
+            "site" : "twitter",
+            "username" : "@xolork_",
+            "pass" : "!SuperSekurP@ss5"
+
+        }
+    */
+
+    if(d.site in pass){
+        return false
+    }
+    pass[d.site] = {
+        'username': d.username,
+        'pass': aes.encode_aes(d.pass, sha1(main_pass).toString())
+    }
+    fs.writeFile('./V-Pass_Config/pass.json', JSON.stringify(pass), () => { })
+    return true
+})
+
 ipcMain.on('login', (e, d) => {
-    pass = d
+    main_pass = d
     if (sha256(d).toString() == config.main_hash) {
         getMainWindow().loadFile(__dirname + `/html/index.html`)
     }
