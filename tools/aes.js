@@ -6,7 +6,7 @@ function decode_aes(encoded_string, key){
 }
 
 function encode_aes(string, key){
-    return aes.encrypt(string, key)
+    return aes.encrypt(string, key).toString()
 }
 
 
