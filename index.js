@@ -18,20 +18,19 @@ const default_config = {
     path: __dirname + '\\V-Pass_Config\\pass.json',
     main_hash: '0'
 }
-try{
+try {
     var config = require('./V-Pass_Config/config.json')
     var pass = require('./V-Pass_Config/pass.json')
-}
-catch{
+} catch {
     var config = {}
     config.main_hash = "0"
 }
 
 // implementation of the config.json file, located in the "V-Pass_Config" folder
-fs.access('./V-Pass_Config', fs.constants.R_OK, async (err) => {
+fs.access('./V-Pass_Config', fs.constants.R_OK, async(err) => {
     if (err) {
         fs.mkdirSync('./V-Pass_Config') // folder creation
-        fs.writeFile('./V-Pass_Config/pass.json', '{}', { flag: "wx" }, () => { })
+        fs.writeFile('./V-Pass_Config/pass.json', '{}', { flag: "wx" }, () => {})
         fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(default_config), { flag: "wx" }, () => {
             config = require('./V-Pass_Config/config.json')
             var pass = require('./V-Pass_Config/pass.json')
@@ -55,11 +54,10 @@ const loadMainWindow = () => {
     mainWindow.removeMenu()
     if (config.main_hash == "0") {
         mainWindow.loadFile(__dirname + `/html/inscription.html`)
-    }
-    else {
+    } else {
         mainWindow.loadFile(__dirname + `/html/login.html`)
     }
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 }
 
 app.on('ready', loadMainWindow)
@@ -89,11 +87,11 @@ ipcMain.on('pass', (event, data) => {
 ipcMain.on('enregistrer', (e, d) => {
     main_pass = d
     config.main_hash = sha256(d).toString()
-    fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(config), () => { })
+    fs.writeFile('./V-Pass_Config/config.json', JSON.stringify(config), () => {})
     getMainWindow().loadFile(__dirname + `/html/index.html`)
 })
 
-ipcMain.on('ajouter', (e, d) =>{
+ipcMain.on('ajouter', (e, d) => {
 
     /*
         d = {
@@ -104,14 +102,14 @@ ipcMain.on('ajouter', (e, d) =>{
         }
     */
 
-    if(d.site in pass){
+    if (d.site in pass) {
         return false
     }
     pass[d.site] = {
         'username': d.username,
         'pass': aes.encode_aes(d.pass, sha1(main_pass).toString())
     }
-    fs.writeFile('./V-Pass_Config/pass.json', JSON.stringify(pass), () => { })
+    fs.writeFile('./V-Pass_Config/pass.json', JSON.stringify(pass), () => {})
     return true
 })
 
@@ -119,8 +117,7 @@ ipcMain.on('login', (e, d) => {
     main_pass = d
     if (sha256(d).toString() == config.main_hash) {
         getMainWindow().loadFile(__dirname + `/html/index.html`)
-    }
-    else {
+    } else {
         e.reply('reply', false)
     }
 })

@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+p#info {
+    display: none;
+}
+
+p.incorrect {
+    font-size: 15px;
+    font-style: italic;
+    display: block;
+}
+
+:root {
+    --color-white: white;
+    --color-bg: #f1f1f1;
+    --color-gray: #767676;
+    --color-black: #242424;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    background-color: var(--color-bg);
+    box-sizing: border-box;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 16px;
+    width: 270px;
+}
+
+
+/* styles des bloques */
+
+input,
+.input-group {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 48px;
+    border-radius: 8px;
+    border: 0px;
+    font-size: inherit;
+    box-sizing: border-box;
+}
+
+
+/* champs de texte */
+
+input:not([type="submit"]) {
+    border: 2px solid var(--color-gray);
+    padding: 16px;
+    background-color: var(--color-bg);
+}
+
+input:not([type="submit"]):focus {
+    background-color: var(--color-white);
+    border: 2px solid var(--color-black);
+    outline: none;
+}
+
+input:not([type="submit"]):not([value=""]) {
+    border: 2px solid var(--color-black);
+}
+
+label {
+    font-size: 16px;
+    position: absolute;
+    display: inline-block;
+    left: 16px;
+    top: 14px;
+    pointer-events: none;
+    z-index: 1;
+    color: var(--color-gray);
+    opacity: 0.5;
+    transition: 0.4s cubic-bezier(0.65, -0.32, 0.38, 1.23) all;
+    -moz-transition: 0.4s cubic-bezier(0.65, -0.32, 0.38, 1.23) all;
+    -webkit-transition: 0.4s cubic-bezier(0.65, -0.32, 0.38, 1.23) all;
+}
+
+input[type="password"] {
+    letter-spacing: 2;
+}
+
+input:focus~label,
+input:not([value=""])~label {
+    top: -10px;
+    left: 8px;
+    font-size: 14px;
+    opacity: 1;
+    padding: 1px 8px;
+    border-radius: 2px;
+}
+
+input:not([value=""])~label {
+    background-color: var(--color-bg);
+    color: var(--color-black);
+}
+
+input:focus~label {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+
+/* bouton d'envoi */
+
+input[type="submit"] {
+    margin-top: 8px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    cursor: pointer;
+}
+
+input[type="submit"]:focus {
+    outline: none;
+}
