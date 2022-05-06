@@ -2,7 +2,18 @@
 
 
 /* Code CSS de la carte */
-div.password div{
+div.password div.card {
+    justify-self: center;
+    padding: 15px;
+    border-radius: 8px;
+    height: 120px;
+    width: 215px;
+    transition: all 0.2s;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+div.password div.logo {
     justify-self: center;
     padding: 15px;
     border-radius: 8px;
@@ -14,16 +25,28 @@ div.password div{
 }
 
 /* Animation hover */
-div.password div:hover{
+div.password div.card:hover {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
     transform: scale(1.02);
 }
+
+div.password div.gris:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.02);
+}
+
+div.password div.cercle:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.02);
+}
+
+
 
 /*
 Code CSS RECTO
 */
 /* Titre */
-div.recto h3{
+div.recto h3 {
     margin-top: 8px;
     text-align: center;
     font-family: 'Roboto';
@@ -32,35 +55,98 @@ div.recto h3{
 }
 
 /* Code CSS pour le pseudo */
-div.recto h2{
+div.recto h2 {
     text-align: center;
     font-style: italic;
     font-size: 18px;
 }
 
 /* Code CSS des mails et mdp */
-div.recto h4{
+div.recto h4 {
     display: none;
 }
 
+/* Code carré logo */
+.logo {
+    position: absolute;
+    left: -1px;
+    top: -50px;
+    transform: translate(0, 10px);
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
+    transform: scale(0.5);
+}
 
-
+.logo img {
+    position: absolute;
+    top: -40PX;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+    transform: scale(0.3);
+}
 
 /*
  Code CSS VERSO 
 */
 /* Code CSS des mails et mdp */
-div.verso h3{
+div.verso h3 {
     display: none;
 }
 
-div.verso h2{
+div.verso h2 {
     display: none;
 }
 
-div.verso h4{
+div.verso h4 {
     display: block;
     font-family: 'Roboto';
     color: black;
     font-size: 15px;
+}
+
+
+/* CARTE PLUS */
+
+div.gris {
+    justify-self: center;
+    padding: 15px;
+    border-radius: 8px;
+    height: 120px;
+    width: 215px;
+    transition: all 0.2s;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    background-color: #faf8ed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.cercle {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    border: solid #efebde;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.plus {
+    width: 50px;
+    height: 5px;
+    transform: translateX(14px) rotate(90deg);
+    background-color: #efebde;
+    border-radius: 5px;
+}
+
+div.plus2{
+    width: 50px;
+    height: 5px;
+    background-color: #efebde;
+    border-radius: 5px;
+    transform: translateX(-12.5px);
 }
