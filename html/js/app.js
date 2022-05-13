@@ -23,3 +23,12 @@ for(i=0;i<cartes.length;i++){
         }
     })
 }
+
+document.getElementById("btn-plus").addEventListener('click', (e) =>{
+    document.getElementById("popupForm").style.display = "block";
+})
+
+
+document.getElementById("btn-register").addEventListener('click', (e) =>{
+    document.getElementById("popupForm").style.display = "none";
+})
